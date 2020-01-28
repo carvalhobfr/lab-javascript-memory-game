@@ -9,8 +9,20 @@ class MemoryGame {
 
   shuffleCards() {
 
-    Math.random(this.cards);
+    const shuffleCardsFY = cards => {
+      let a = cards.length;
+      while (a !== 0) {
+        const b = Math.floor(Math.random() * a);
+        a--;
+        let c = cards[a];
+        cards[a] = cards[b];
+        cards[b] = c;
+      }
+      return cards;
+    };
+    shuffleCardsFY(this.cards);
   }
+
 
   checkIfPair(card1, card2) {
     this.pairsClicked += 1;
@@ -22,9 +34,13 @@ class MemoryGame {
       return false
     };
 
-  }
+  };
 
   isFinished() {
-    // ...
+    if (this.pairsGuessed === this.cards.length / 2) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
